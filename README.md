@@ -17,7 +17,7 @@ Learning / Sandbox environments
 |---|---|
 |Dockerfile|Builds the GoldenGate 23ai MA container image using the installer zip and provided scripts. |
 |installation_prereq.sh|Runs prerequisite checks before installation (packages, permissions, environment setup).|
-|installation_deployment.sh|Performs the silent installation and deployment of GoldenGate MA using the oggca.rsp response file. |
+|installation_deployment.sh|Performs the silent installation of OGG and deployment of GoldenGate MA using the oggca.rsp response file. |
 |healthcheck.sh|Basic health check script to verify SM status and keep the container live.|
 |oggca.rsp|Response file that defines installation configuration including ports, deployment name, admin credentials, directories etc.|
 
