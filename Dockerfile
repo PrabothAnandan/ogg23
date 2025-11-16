@@ -3,10 +3,18 @@
 #########################################
 
 # Use the official Oralce Linux base image
-#FROM registry.access.redhat.com/ubi8/ubi
 FROM oraclelinux:8
 
-ARG INSTALLER=V1042871-01.zip
+# Define build arguments
+ARG INSTALLER_FILE
+ARG OGG_ADMIN
+ARG OGG_ADMIN_PWD
+ARG DEPLOYMENT
+
+ENV INSTALLER=${INSTALLER_FILE} 
+ENV OGG_ADMIN_USR=${OGG_ADMIN} 
+ENV OGG_ADMIN_PWD=${OGG_ADMIN_PWD}
+
 
 # Install basic packages into the container unzip, hostname, sudo, libaio for sqlplus and procps for ps -ef|grep
 RUN dnf install -y unzip sudo hostname  && \
@@ -16,24 +24,24 @@ RUN dnf install -y unzip sudo hostname  && \
 # Set the environments
 
 # GG installation base mount point
-ENV OGG_BASE_DIR "/gg01"
-ENV OGG_DATA_BASE_DIR "/gg02"
-ENV DEPLOYMENT_NAME "Demo"
+ENV OGG_BASE_DIR "/gg01" 
+ENV OGG_DATA_BASE_DIR "/gg02" 
+ENV DEPLOYMENT_NAME=${DEPLOYMENT} 
 ENV OGG_VERSION "23"
 
 #ENV HOME "${GG_BASE_DIR}"
-ENV OGG_HOME "${OGG_BASE_DIR}/ogg/product/${OGG_VERSION}/ogg_home"
-ENV ORA_INVENTORY "${OGG_BASE_DIR}/app/oraInventory"
-ENV OGG_SCRIPT_DIR "${OGG_BASE_DIR}/scripts"
-ENV TNS_ADMIN "${OGG_DATA_BASE_DIR}/network/admin"
-ENV OGG_DM_HOME "${OGG_DATA_BASE_DIR}/deployment"
-ENV OGG_SM_HOME "${OGG_BASE_DIR}/srvmgr"
-ENV OGG_PM_METRICS "${OGG_BASE_DIR}/metrics"
-ENV OGG_USER "ogg"
-ENV ROOT_USER "root"
-ENV OGG_ETC_HOME "${OGG_SM_HOME}/etc"
-ENV OGG_VAR_HOME "${OGG_SM_HOME}/var"
-ENV ORACLE_HOME "${OGG_HOME}"
+ENV OGG_HOME "${OGG_BASE_DIR}/ogg/product/${OGG_VERSION}/ogg_home" 
+ENV ORA_INVENTORY "${OGG_BASE_DIR}/app/oraInventory" 
+ENV OGG_SCRIPT_DIR "${OGG_BASE_DIR}/scripts" 
+ENV TNS_ADMIN "${OGG_DATA_BASE_DIR}/network/admin" 
+ENV OGG_DM_HOME "${OGG_DATA_BASE_DIR}/deployment" 
+ENV OGG_SM_HOME "${OGG_BASE_DIR}/srvmgr" 
+ENV OGG_PM_METRICS "${OGG_BASE_DIR}/metrics" 
+ENV OGG_USER "ogg" 
+ENV ROOT_USER "root" 
+ENV OGG_ETC_HOME "${OGG_SM_HOME}/etc" 
+ENV OGG_VAR_HOME "${OGG_SM_HOME}/var" 
+ENV ORACLE_HOME "${OGG_HOME}" 
 ENV PATH "${OGG_HOME}:${PATH}:${OGG_HOME}/lib/instantclient"
 
 # Copy the Goldengate Installer to temp location
@@ -59,4 +67,4 @@ WORKDIR /home/gghub
 
 # Set the default command
 CMD ["/usr/local/bin/healthcheck.sh"]
-#CMD ["tail", "-f", "/dev/null"]
+

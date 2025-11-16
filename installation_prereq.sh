@@ -16,14 +16,16 @@ oggca_response_file="/tmp/oggca.rsp"
 container_host="localhost"
 
 # OGGCA parameters
-oggca_parameter_in_response_file=("HOST_SERVICEMANAGER" "DEPLOYMENT_NAME" "SERVICEMANAGER_DEPLOYMENT_HOME" "OGG_SOFTWARE_HOME" "OGG_DEPLOYMENT_HOME"
-"OGG_ETC_HOME" "OGG_CONF_HOME" "OGG_SSL_HOME" "OGG_VAR_HOME" "OGG_DATA_HOME" "OGG_ARCHIVE_HOME" "ENV_LD_LIBRARY_PATH" "ENV_TNS_ADMIN"
-"PMSRVR_DATASTORE_HOME" "SERVICE_MANAGER_REMOTE_METRICS_LISTENING_HOST" "DEPLOYMENT_REMOTE_METRICS_LISTENING_HOST")
+oggca_parameter_in_response_file=("HOST_SERVICEMANAGER" "DEPLOYMENT_NAME" "ADMINISTRATOR_USER" "ADMINISTRATOR_PASSWORD" "DEPLOYMENT_ADMINISTRATOR_USER"
+"DEPLOYMENT_ADMINISTRATOR_PASSWORD" "SERVICEMANAGER_DEPLOYMENT_HOME"  "OGG_SOFTWARE_HOME" "OGG_DEPLOYMENT_HOME" "OGG_ETC_HOME" "OGG_CONF_HOME" 
+"OGG_SSL_HOME" "OGG_VAR_HOME" "OGG_DATA_HOME" "OGG_ARCHIVE_HOME" "ENV_LD_LIBRARY_PATH" "ENV_TNS_ADMIN" "PMSRVR_DATASTORE_HOME" 
+"SERVICE_MANAGER_REMOTE_METRICS_LISTENING_HOST" "DEPLOYMENT_REMOTE_METRICS_LISTENING_HOST")
 
 # OGGCA parameter values
-oggca_parameter_values=("${container_host}" "${DEPLOYMENT_NAME}" "${OGG_SM_HOME}" "${OGG_HOME}" "${OGG_DM_HOME}" "${OGG_DM_HOME}/etc"
-"${OGG_DM_HOME}/etc/conf" "${OGG_DM_HOME}/etc/ssl" "${OGG_DM_HOME}/var" "${OGG_DM_HOME}/var/lib/data" "${OGG_DM_HOME}/var/lib/archive"
-"${OGG_HOME}/lib/instantclient:${OGG_HOME}/lib" "${TNS_ADMIN}" "${OGG_PM_METRICS}" "${container_host}" "${container_host}")
+oggca_parameter_values=("${container_host}" "${DEPLOYMENT_NAME}" "${OGG_ADMIN_USR}" "${OGG_ADMIN_PWD}" "${OGG_ADMIN_USR}" "${OGG_ADMIN_PWD}"
+"${OGG_SM_HOME}" "${OGG_HOME}" "${OGG_DM_HOME}" "${OGG_DM_HOME}/etc" "${OGG_DM_HOME}/etc/conf" "${OGG_DM_HOME}/etc/ssl" "${OGG_DM_HOME}/var" 
+"${OGG_DM_HOME}/var/lib/data" "${OGG_DM_HOME}/var/lib/archive" "${OGG_HOME}/lib/instantclient:${OGG_HOME}/lib" "${TNS_ADMIN}" 
+"${OGG_PM_METRICS}" "${container_host}" "${container_host}")
 
 #---------------------------
 # ogg User creation at OS
@@ -77,6 +79,12 @@ function ogg_directory_permission() {
              "${OGG_PM_METRICS}" \
              "${OGG_SCRIPT_DIR}" \
              "${TNS_ADMIN}"
+
+    # Exit if directories not created.
+    if [ $? -ne 0 ]; then
+        echo "$(date '+%d-%m-%Y %H:%M:%S.%3N') [Error] : Failed to create directories"
+        exit 1
+    fi
 
     # Assign ownership & permissions
     chown -R ogg:ogg "${OGG_BASE_DIR}" "${OGG_DATA_BASE_DIR}"

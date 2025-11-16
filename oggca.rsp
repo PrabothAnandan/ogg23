@@ -72,24 +72,24 @@ DEPLOYMENT_NAME=
 #-------------------------------------------------------------------------------
 # Specify the administrator account username for the Service Manager.
 #-------------------------------------------------------------------------------
-ADMINISTRATOR_USER=oggadmin
+ADMINISTRATOR_USER=
 
 #-------------------------------------------------------------------------------
 # Specify the administrator account password for the Service Manager.
 #-------------------------------------------------------------------------------
-ADMINISTRATOR_PASSWORD=oggadmin
+ADMINISTRATOR_PASSWORD=
 
 #-------------------------------------------------------------------------------
 # Optionally, specify a different administrator account username for the deployment,
 # or leave blanks to use the same Service Manager administrator credentials.
 #-------------------------------------------------------------------------------
-DEPLOYMENT_ADMINISTRATOR_USER=oggadmin
+DEPLOYMENT_ADMINISTRATOR_USER=
 
 #-------------------------------------------------------------------------------
 # If creating a different administrator account username for the deployment,
 # specify the password for it.
 #-------------------------------------------------------------------------------
-DEPLOYMENT_ADMINISTRATOR_PASSWORD=oggadmin
+DEPLOYMENT_ADMINISTRATOR_PASSWORD=
 
 
 ################################################################################
@@ -371,3 +371,163 @@ TLS_1_3_ENABLED=true
 # Specify if FIPS will be enabled.
 #-------------------------------------------------------------------------------
 FIPS_ENABLED=false
+
+#-------------------------------------------------------------------------------
+# If SSL / TLS will be enabled, specify the server certificate
+#-------------------------------------------------------------------------------
+SERVER_CERTIFICATE=
+
+#-------------------------------------------------------------------------------
+# If importing a server certificate, specify the private key file in PKCS#8 format
+# The private key file must not be encrypted
+#-------------------------------------------------------------------------------
+SERVER_CERTIFICATE_KEY_FILE=
+
+#-------------------------------------------------------------------------------
+# If importing a server certificate, optionally specify the CA certificates file
+#-------------------------------------------------------------------------------
+SERVER_CA_CERTIFICATES_FILE=
+
+#-------------------------------------------------------------------------------
+# If SSL / TLS will be enabled, optionally specify the client certificate.
+#-------------------------------------------------------------------------------
+CLIENT_CERTIFICATE=
+
+#-------------------------------------------------------------------------------
+# If importing a client certificate, specify the private key file in PKCS#8 format
+# The private key file must not be encrypted
+#-------------------------------------------------------------------------------
+CLIENT_CERTIFICATE_KEY_FILE=
+
+#-------------------------------------------------------------------------------
+# If importing a client certificate, optionally specify the CA certificates file
+#-------------------------------------------------------------------------------
+CLIENT_CA_CERTIFICATES_FILE=
+
+
+###############################################################################
+#                                                                             #
+#                           SECTION I - SERVICES                              #
+#                                                                             #
+###############################################################################
+
+#-------------------------------------------------------------------------------
+# Specify if the Administration server will be enabled.
+# Specify true if the Administration server will be enabled, false otherwise.
+#-------------------------------------------------------------------------------
+ADMINISTRATION_SERVER_ENABLED=true
+
+#-------------------------------------------------------------------------------
+# Required only if the Administration server will be enabled.
+# Specify the port for Administration Server.
+#-------------------------------------------------------------------------------
+PORT_ADMINSRVR=9001
+
+#-------------------------------------------------------------------------------
+# Specify if the Distribution server will be enabled.
+# Specify true if the Distribution server will be enabled, false otherwise.
+#-------------------------------------------------------------------------------
+DISTRIBUTION_SERVER_ENABLED=true
+
+#-------------------------------------------------------------------------------
+# Required only if the Distribution server will be enabled.
+# Specify the port for Distribution Server.
+#-------------------------------------------------------------------------------
+PORT_DISTSRVR=9002
+
+#-------------------------------------------------------------------------------
+# If security is disabled, specify if this non-secure deployment will be used
+# to send trail data to a secure deployment.
+#-------------------------------------------------------------------------------
+NON_SECURE_DISTSRVR_CONNECTS_TO_SECURE_RCVRSRVR=false
+
+#-------------------------------------------------------------------------------
+# Specify if the Receiver server will be enabled.
+# Specify true if the Receiver server will be enabled, false otherwise.
+#-------------------------------------------------------------------------------
+RECEIVER_SERVER_ENABLED=true
+
+#-------------------------------------------------------------------------------
+# Required only if the Receiver server will be enabled.
+# Specify the port for Receiver Server.
+#-------------------------------------------------------------------------------
+PORT_RCVRSRVR=9003
+
+#-------------------------------------------------------------------------------
+# Specify if Performance Metrics server will be enabled.
+# Specify true if Performance Metrics server will be enabled, false otherwise.
+#-------------------------------------------------------------------------------
+METRICS_SERVER_ENABLED=true
+#-------------------------------------------------------------------------------
+# Specify if Performance Metrics server is a critical service.
+# Specify true if Performance Metrics server is a critical service, false otherwise.
+#
+# This is optional and only takes effect when Performance Metrics server will be enabled.
+# Also, this option should only be set when the Service Manager is integrated with XAG.
+# The default value is false.
+#
+# This option is only supported for Oracle databases.
+#-------------------------------------------------------------------------------
+METRICS_SERVER_IS_CRITICAL=false
+
+#-------------------------------------------------------------------------------
+# Specify the port for Performance Metrics server (TCP).
+#
+# This option is only needed when Performance Metrics server will be enabled.
+#-------------------------------------------------------------------------------
+PORT_PMSRVR=9004
+
+#-------------------------------------------------------------------------------
+# Specify the DataStore type for Performance Metrics server.
+# Valid values are: BDB, LMDB
+#
+# This option is only needed when Performance Metrics server will be enabled.
+#-------------------------------------------------------------------------------
+PMSRVR_DATASTORE_TYPE=BDB
+
+#-------------------------------------------------------------------------------
+# Specify the DataStore home location for Performance Metrics server.
+# This is optional and only takes effect when Performance Metrics server will be enabled.
+#-------------------------------------------------------------------------------
+PMSRVR_DATASTORE_HOME=
+
+#-------------------------------------------------------------------------------
+# Specify if Remote Metrics using StatsD protocol will be enabled for the Deployment
+# Specify true if Remote Metrics for the deployment will be enabled, false otherwise
+#-------------------------------------------------------------------------------
+ENABLE_DEPLOYMENT_REMOTE_METRICS=true
+
+#-------------------------------------------------------------------------------
+# If Remote Metrics for the deployment will be enabled, specify the listening host
+#-------------------------------------------------------------------------------
+DEPLOYMENT_REMOTE_METRICS_LISTENING_HOST=
+
+#-------------------------------------------------------------------------------
+# If Remote Metrics for the deployment will be enabled, specify the listening port for that server
+#-------------------------------------------------------------------------------
+DEPLOYMENT_REMOTE_METRICS_LISTENING_PORT=9050
+
+
+###############################################################################
+#                                                                             #
+#                       SECTION J - REPLICATION OPTIONS                       #
+#                                                                             #
+###############################################################################
+
+#-------------------------------------------------------------------------------
+# Specify the value for the GoldenGate schema.
+#-------------------------------------------------------------------------------
+OGG_SCHEMA=GGMON
+
+
+###############################################################################
+#                                                                             #
+#                  SECTION K - REMOVE DEPLOYMENT OPTIONS                      #
+#                                                                             #
+###############################################################################
+
+#-------------------------------------------------------------------------------
+# Specify if the deployment files should be removed from disk.
+# Specify true if the deployment files should be removed, false otherwise.
+#-------------------------------------------------------------------------------
+REMOVE_DEPLOYMENT_FROM_DISK=
