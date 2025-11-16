@@ -13,7 +13,7 @@ Learning / Sandbox environments
 
 
 ## File Descriptions
-|file | Purpose |
+|File | Purpose |
 |---|---|
 |Dockerfile|Builds the GoldenGate 23ai MA container image using the installer zip and provided scripts. |
 |installation_prereq.sh|Runs prerequisite checks before installation (packages, permissions, environment setup).|
