@@ -63,7 +63,7 @@ RUN bash -c /tmp/installation_deployment.sh
 USER ogg
 
 # Working dir
-WORKDIR /home/gghub
+WORKDIR /home/ogg
 
 # Set the default command
 CMD ["/usr/local/bin/healthcheck.sh"]
