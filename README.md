@@ -34,6 +34,6 @@ podman / docker build \
 ```
 podman / docker run -d --name <container_name> \
 -p 9000-9004:9000-9004 \
--v [houst mount]:/gg02 \
+-v [host mount]:/gg02 \
 oracle/ogg23:23.4.1.24.05
 ```
